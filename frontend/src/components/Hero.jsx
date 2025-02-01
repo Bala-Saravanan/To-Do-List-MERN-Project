@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import todo from "./../assets/todo.jpg";
+import todo2 from "./../assets/todo3.png";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Hero = () => {
           </button>
         </div>
         <div className="m-2 md:m-10">
-          <img src={todo} alt="" />
+          <img src={todo2} alt="" />
         </div>
       </div>
     </>

@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "tailwindcss/line-clamp";
+/* @import "tailwindcss/line-clamp"; */
 
 @theme {
   --color-primary: #60a5fa;
