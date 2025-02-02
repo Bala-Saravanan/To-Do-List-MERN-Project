@@ -2,7 +2,7 @@ import todoModel from "../model/todoModel.js";
 
 const getAllToDo = async (req, res) => {
   try {
-    const todos = await todoModel.find({});
+    const todos = await todoModel.find({}).sort({ createdAt: -1 });
     return res.status(200).json({
       success: true,
       todos,
