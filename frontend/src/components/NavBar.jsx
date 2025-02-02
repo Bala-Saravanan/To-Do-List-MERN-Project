@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const NavBar = () => {
   const nav_items = [
     { title: "Home", path: "/" },
+    { title: "My ToDo's", path: "/my/todos" },
     { title: "New ToDo", path: "/post/todo" },
   ];
   const navigate = useNavigate();

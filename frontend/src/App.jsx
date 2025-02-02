@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home";
 import PostToDo from "./components/PostToDo";
+import ToDo from "./components/ToDo";
 
 const appRouter = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/post/todo",
     element: <PostToDo />,
+  },
+  {
+    path: "/my/todos",
+    element: <ToDo />,
   },
 ]);
 
