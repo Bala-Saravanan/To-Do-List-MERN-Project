@@ -82,7 +82,7 @@ const ToDo = () => {
                     <FaRegEdit />
                   </button>
                 </div>
-                <p className="md:w-200 my-2 text-wrap">{description}</p>
+                <p className="lg:w-200 my-2 text-wrap">{description}</p>
                 <div className="flex flex-col justify-center md:flex-row md:justify-between md:items-center">
                   <div className="flex space-x-2 items-center">
                     <h3 className="text-xl font-semibold">Status:</h3>
