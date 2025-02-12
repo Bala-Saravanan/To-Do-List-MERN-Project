@@ -27,6 +27,14 @@ const NavBar = () => {
               {title}
             </li>
           ))}
+          <li>
+            <button
+              onClick={() => navigate("user/login")}
+              className="px-5 py-3 cursor-pointer border rounded-lg bg-primary text-white font-semibold hover:bg-hover transition-all duration-500"
+            >
+              Log In
+            </button>
+          </li>
           <li
             className="md:hidden cursor-pointer text-3xl"
             onClick={() => setToggleMenu(!toggleMenu)}
@@ -36,7 +44,7 @@ const NavBar = () => {
         </ul>
         <div className="md:hidden">
           {toggleMenu ? (
-            <ul className="flex flex-col bg-primary text-white text-xl">
+            <ul className="flex flex-col bg-primary text-white text-xl font-semibold">
               {nav_items.map(({ title, path }, idx) => (
                 <li
                   key={idx}

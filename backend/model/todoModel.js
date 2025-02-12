@@ -1,7 +1,13 @@
 import mongoose from "mongoose";
+import User from "./userModel";
 
 const todoSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: User,
+    },
     title: {
       type: String,
       required: true,

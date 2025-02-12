@@ -16,8 +16,8 @@ const Footer = () => {
   ];
   return (
     <>
-      <div className="flex items-center flex-col-reverse justify-center md:flex-row md:justify-between m-5">
-        <div className="text-xl font-light text-center">
+      <div className="bg-blue-400 flex items-center flex-col-reverse justify-center md:flex-row md:justify-between p-5">
+        <div className="text-white text-xl font-light text-center">
           <p>&copy; 2025 To Do App, All rights are reserved.</p>
         </div>
         <div>
@@ -25,7 +25,7 @@ const Footer = () => {
             {social_icons.map((icon, idx) => (
               <li
                 key={idx}
-                className=" m-5 text-2xl hover:text-hover cursor-pointer transition-all duration-500"
+                className=" m-5 text-2xl text-white hover:text-black cursor-pointer transition-all duration-500"
               >
                 {icon}
               </li>
