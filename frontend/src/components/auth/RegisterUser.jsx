@@ -1,12 +1,61 @@
+import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const RegisterUser = () => {
+  const [newUser, setNewUser] = useState({
+    userName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const navigate = useNavigate();
+  const changeHandler = (event) => {
+    const { name, value } = event.target;
+    setNewUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+  };
+  const submitHandler = async (event) => {
+    try {
+      event.preventDefault();
+      if (
+        !newUser.userName ||
+        !newUser.email ||
+        !newUser.password ||
+        !newUser.confirmPassword
+      ) {
+        alert("All fields are required!");
+        return;
+      }
+
+      if (newUser.password !== newUser.confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+      await axios.post("http://localhost:4000/user/signup", newUser);
+      navigate("../../user/login");
+      alert("User created successfully!");
+      setNewUser({
+        userName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      alert("Error registering user!");
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="container h-[100vh] flex justify-center items-center">
         <div className="border rounded-xl shadow-2xl">
-          <form className="h-[600px] w-[500px] flex flex-col items-center ">
+          <form
+            onSubmit={submitHandler}
+            className="h-[600px] w-[500px] flex flex-col items-center "
+          >
             <h1 className="font-bold text-3xl my-7">
               Sign <span className="text-primary">In</span>
             </h1>
@@ -17,8 +66,10 @@ const RegisterUser = () => {
               <input
                 className="w-[400px] h-[35px] px-2 border rounded focus:outline-primary"
                 type="text"
-                name="username"
+                name="userName"
                 id="username"
+                value={newUser.userName}
+                onChange={changeHandler}
               />
             </div>
             <div className=" flex flex-col">
@@ -30,6 +81,8 @@ const RegisterUser = () => {
                 type="email"
                 name="email"
                 id="email"
+                value={newUser.email}
+                onChange={changeHandler}
               />
             </div>
             <div className="my-3 flex flex-col">
@@ -41,6 +94,8 @@ const RegisterUser = () => {
                 type="password"
                 name="password"
                 id="password"
+                value={newUser.password}
+                onChange={changeHandler}
               />
             </div>
             <div className="my-3 flex flex-col">
@@ -50,8 +105,10 @@ const RegisterUser = () => {
               <input
                 className="w-[400px] h-[35px] px-2 border rounded focus:outline-primary"
                 type="password"
-                name="password"
-                id="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                value={newUser.confirmPassword}
+                onChange={changeHandler}
               />
             </div>
 

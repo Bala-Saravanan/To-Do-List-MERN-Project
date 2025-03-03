@@ -1,10 +1,10 @@
-import User from "../model/userModel";
+import userModel from "../model/userModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const userRegister = async (req, res) => {
   try {
-    const { userName, email, password } = req.body;
+    const { userName, email, password, confirmPassword } = req.body;
 
     if (!userName || !email || !password) {
       return res.status(400).json({
@@ -13,7 +13,7 @@ const userRegister = async (req, res) => {
       });
     }
 
-    const user = await User.findOne({ email });
+    const user = await userModel.findOne({ email });
 
     if (user) {
       return res.status(400).json({
@@ -22,10 +22,17 @@ const userRegister = async (req, res) => {
       });
     }
 
+    if (password !== confirmPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "The confirm password must be same as the given password!",
+      });
+    }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new User({
+    const newUser = new userModel({
       userName,
       email,
       password: hashedPassword,
@@ -55,7 +62,7 @@ const userRegister = async (req, res) => {
 const userLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await userModel.findOne({ email });
 
     if (!user) {
       return res.status(404).json({
