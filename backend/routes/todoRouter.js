@@ -10,8 +10,8 @@ const todoRoute = express.Router();
 
 todoRoute.post("/post/todo", auth, postToDo);
 todoRoute.get("/get/todos", auth, getAllToDo);
-todoRoute.patch("/update/todo/:id", auth, updateToDo);
-todoRoute.patch("/update/status/:id", auth, updateStatus);
-todoRoute.delete("/delete/todo/:id", auth, deleteToDo);
+todoRoute.patch("/update/todo/:id", updateToDo);
+todoRoute.patch("/update/status/:id", updateStatus);
+todoRoute.delete("/delete/todo/:id", deleteToDo);
 
 export default todoRoute;

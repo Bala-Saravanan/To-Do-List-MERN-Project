@@ -58,9 +58,9 @@ const ToDo = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <NavBar />
-      <div>
+      <div className="flex-grow">
         {todos && todos.length > 0 ? (
           <ul>
             {todos.map(({ _id, title, description, status, createdAt }) => (
@@ -174,7 +174,8 @@ const ToDo = () => {
         </Edit>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
+
 export default ToDo;
