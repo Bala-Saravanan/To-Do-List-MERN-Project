@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
+import { RiUserLine } from "react-icons/ri";
 
 const NavBar = () => {
   const nav_items = [
@@ -11,6 +12,21 @@ const NavBar = () => {
   ];
   const navigate = useNavigate();
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if the user is logged in (this is just a placeholder, replace with your actual logic)
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/user/login");
+  };
   return (
     <>
       <div>
@@ -28,12 +44,27 @@ const NavBar = () => {
             </li>
           ))}
           <li>
-            <button
-              onClick={() => navigate("user/login")}
-              className="px-5 py-3 cursor-pointer border rounded-lg bg-primary text-white font-semibold hover:bg-hover transition-all duration-500"
-            >
-              Log In
-            </button>
+            {isLoggedIn ? (
+              <div className="flex items-center">
+                <RiUserLine
+                  className="text-3xl cursor-pointer"
+                  onClick={handleLogout}
+                />
+                <button
+                  onClick={handleLogout}
+                  className="ml-3 px-5 py-3 cursor-pointer border rounded-lg bg-primary text-white font-semibold hover:bg-hover transition-all duration-500"
+                >
+                  Log Out
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => navigate("user/login")}
+                className="px-5 py-3 cursor-pointer border rounded-lg bg-primary text-white font-semibold hover:bg-hover transition-all duration-500"
+              >
+                Log In
+              </button>
+            )}
           </li>
           <li
             className="md:hidden cursor-pointer text-3xl"

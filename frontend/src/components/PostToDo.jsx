@@ -21,10 +21,17 @@ const PostToDo = () => {
 
   const submitHandler = async (event) => {
     try {
+      const token = localStorage.getItem("token");
+
       event.preventDefault();
       const response = await axios.post(
         "http://localhost:4000/post/todo",
-        todo
+        todo,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
       );
       // console.log(response);
       alert("To Do created successfully!");

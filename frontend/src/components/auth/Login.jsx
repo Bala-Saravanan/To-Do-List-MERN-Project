@@ -1,12 +1,56 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const [loggedInUser, setLoggedInUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    if (!loggedInUser.email || !loggedInUser.password) {
+      alert("All fields are required!");
+      return;
+    }
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/user/login",
+        loggedInUser
+      );
+      const { token } = response.data;
+      localStorage.setItem("token", token);
+      axios.defaults.headers.common["Authorization"] = token; // Set the token in the Axios default headers
+
+      navigate("/");
+      alert(`Welcome Back!`);
+      setLoggedInUser({
+        email: "",
+        password: "",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const changeHandler = (event) => {
+    const { name, value } = event.target;
+    setLoggedInUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+  };
   return (
     <>
       <div className="container h-[100vh] flex justify-center items-center">
         <div className="border rounded-xl shadow-2xl">
-          <form className="h-[400px] w-[500px] flex flex-col items-center ">
+          <form
+            onSubmit={submitHandler}
+            className="h-[400px] w-[500px] flex flex-col items-center "
+          >
             <h1 className="font-bold text-3xl my-7">
               Log <span className="text-primary">In</span>
             </h1>
@@ -19,6 +63,8 @@ const Login = () => {
                 type="email"
                 name="email"
                 id="email"
+                value={loggedInUser.email}
+                onChange={changeHandler}
               />
             </div>
             <div className="my-3 flex flex-col">
@@ -30,6 +76,8 @@ const Login = () => {
                 type="password"
                 name="password"
                 id="password"
+                value={loggedInUser.password}
+                onChange={changeHandler}
               />
             </div>
 

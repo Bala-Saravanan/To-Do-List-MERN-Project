@@ -6,16 +6,17 @@ const postToDo = async (req, res) => {
 
     const exists = await todoModel.findOne({ title });
     if (exists) {
-      return res.status(500).json({
+      return res.status(400).json({
         success: false,
         message: "To Do already exists!",
       });
     }
 
     const newToDo = new todoModel({
+      user: req.user.id,
       title,
       description,
-      status,
+      status: status || false,
     });
 
     const toDo = await newToDo.save();

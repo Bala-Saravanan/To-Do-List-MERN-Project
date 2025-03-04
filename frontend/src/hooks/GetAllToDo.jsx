@@ -5,8 +5,14 @@ const GetAllToDo = (url) => {
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
+    const token = localStorage.getItem("token");
+
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: token,
+        },
+      });
       if (response.data.success) {
         console.log(response.data);
         setData(response.data.todos);

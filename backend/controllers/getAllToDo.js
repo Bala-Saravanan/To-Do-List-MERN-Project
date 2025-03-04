@@ -2,7 +2,10 @@ import todoModel from "../model/todoModel.js";
 
 const getAllToDo = async (req, res) => {
   try {
-    const todos = await todoModel.find({}).sort({ createdAt: -1 });
+    const userId = req.user.id; // Get the user ID from the request
+    const todos = await todoModel
+      .find({ user: userId })
+      .sort({ createdAt: -1 });
     return res.status(200).json({
       success: true,
       todos,
