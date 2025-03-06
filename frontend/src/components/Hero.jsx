@@ -11,9 +11,8 @@ const Hero = () => {
             Create your personalized To-Do's and Track your Routines
           </h1>
           <p className="text-xl text-white my-4 leading-7 text-justify md:text-left">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-            dolorum, alias excepturi voluptas nulla suscipit quis voluptates
-            debitis iste? Modi.
+            Success is built on consistent action, not just big leaps. Each task
+            you complete today brings you one step closer to your goals!
           </p>
           <button
             onClick={() => navigate(`/post/todo`)}

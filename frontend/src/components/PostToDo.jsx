@@ -38,7 +38,7 @@ const PostToDo = () => {
       setTodo({ title: "", description: "", status: false });
     } catch (error) {
       console.log(error);
-      alert("Error creating To Do!");
+      alert(error.response.data.message);
     }
   };
 

@@ -21,6 +21,7 @@ const Login = () => {
         "http://localhost:4000/user/login",
         loggedInUser
       );
+      // console.log(response);
       const { token } = response.data;
       localStorage.setItem("token", token);
       axios.defaults.headers.common["Authorization"] = token; // Set the token in the Axios default headers

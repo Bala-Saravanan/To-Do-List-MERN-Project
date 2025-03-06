@@ -5,7 +5,7 @@ const authenticateUser = (req, res, next) => {
   if (!token) {
     return res.status(401).json({
       success: false,
-      message: "Access Denied!",
+      message: "Access Denied! Kindly Login!",
     });
   }
   try {
