@@ -81,7 +81,7 @@ const NavBar = () => {
             )}
           </li>
           <li
-            className="md:hidden cursor-pointer text-3xl"
+            className="md:hidden cursor-pointer text-3xl mx-3"
             onClick={() => setToggleMenu(!toggleMenu)}
           >
             {toggleMenu ? <RxCross2 /> : <RxHamburgerMenu />}
