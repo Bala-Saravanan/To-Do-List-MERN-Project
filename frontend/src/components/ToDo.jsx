@@ -13,6 +13,9 @@ const ToDo = () => {
   const { data: todos, refetch } = GetAllToDo(
     "http://localhost:4000/get/todos"
   );
+  const totalData = todos.length;
+  const completedData = todos.filter(({ status }) => status).length;
+  // console.log(completedData);
 
   const deleteHandler = async (id) => {
     try {
@@ -61,6 +64,10 @@ const ToDo = () => {
     <div className="flex flex-col min-h-screen">
       <NavBar />
       <div className="flex-grow">
+        <div className="text-gray-500 ms-10 text-lg">
+          <p>Total To Do: {totalData}</p>
+          <p>Completed To Do: {completedData}</p>
+        </div>
         {todos && todos.length > 0 ? (
           <ul>
             {todos.map(({ _id, title, description, status, createdAt }) => (
@@ -86,7 +93,13 @@ const ToDo = () => {
                 <div className="flex flex-col justify-center md:flex-row md:justify-between md:items-center">
                   <div className="flex space-x-2 items-center">
                     <h3 className="text-xl font-semibold">Status:</h3>
-                    <p>{status ? "Completed" : "Pending"}</p>
+                    <p
+                      className={`${
+                        status ? "text-green-400" : "text-red-400"
+                      }`}
+                    >
+                      {status ? "Completed" : "Pending"}
+                    </p>
                   </div>
                   <div className="flex justify-between items-center">
                     <div className="flex space-x-5">

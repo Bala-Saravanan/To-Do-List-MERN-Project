@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
-import { RiUserLine } from "react-icons/ri";
+import { FaUser } from "react-icons/fa6";
 import UserInfo from "./UserInfo";
 import axios from "axios";
 
@@ -50,9 +50,12 @@ const NavBar = () => {
   return (
     <>
       <div>
-        <ul className="flex items-center m-10">
-          <li className="mr-auto font-bold text-3xl">
-            <span className="text-primary ">To Do</span> App
+        <ul className="flex items-center my-5 md:m-10">
+          <li className="mr-auto font-bold text-2xl md:text-3xl flex items-center">
+            <img className="w-15" src="/favicon.png" alt="" />
+            <p>
+              <span className="text-primary ">To Do </span> App
+            </p>
           </li>
           {nav_items.map(({ title, path }, idx) => (
             <li
@@ -66,8 +69,8 @@ const NavBar = () => {
           <li>
             {isLoggedIn ? (
               <div className="flex items-center">
-                <RiUserLine
-                  className="text-3xl cursor-pointer"
+                <FaUser
+                  className="text-2xl cursor-pointer"
                   onClick={() => setUserPanelOpen(!isUserPanelOpen)}
                 />
               </div>
@@ -105,9 +108,9 @@ const NavBar = () => {
           )}
         </div>
         <UserInfo isOpen={isUserPanelOpen}>
-          <div className="absolute top-10 right-5 text-center border-none ring-1 ring-gray-400 rounded-lg m-5 w-fit bg-gray-200">
+          <div className="absolute top-10 right-5 text-center border-none ring-1 ring-gray-400 rounded-lg m-5 w-fit shadow-xl bg-white">
             <h1 className="my-2 mx-7">{userName}</h1>
-            <div className=" hover:bg-gray-300 rounded-b-lg">
+            <div className=" hover:bg-gray-100 rounded-b-lg">
               <button
                 className="my-2 mx-7 cursor-pointer"
                 onClick={handleLogout}
