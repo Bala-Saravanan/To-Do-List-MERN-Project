@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../../constants/constant";
 
 const RegisterUser = () => {
   const [newUser, setNewUser] = useState({
@@ -34,7 +35,7 @@ const RegisterUser = () => {
         alert("Passwords do not match!");
         return;
       }
-      await axios.post("http://localhost:4000/user/signup", newUser);
+      await axios.post(`${API_BASE_URL}/user/signup`, newUser);
       navigate("../../user/login");
       alert("User created successfully!");
       setNewUser({

@@ -1,8 +1,9 @@
+import { API_BASE_URL } from "../constants/constant";
 import GetAllToDo from "../hooks/GetAllToDo";
 import { Link } from "react-router-dom";
 
 const ToDoList = () => {
-  const { data } = GetAllToDo("http://localhost:4000/get/todos");
+  const { data } = GetAllToDo(`${API_BASE_URL}/get/todos`);
   // console.log(data);
   const todos = data.length > 9 ? data.slice(0, 6) : data;
   return (

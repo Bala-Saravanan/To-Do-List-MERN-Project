@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa6";
 import UserInfo from "./UserInfo";
 import axios from "axios";
+import { API_BASE_URL } from "../constants/constant";
 
 const NavBar = () => {
   const nav_items = [
@@ -30,7 +31,7 @@ const NavBar = () => {
 
   const getUserInfo = async (token) => {
     try {
-      const response = await axios.get("http://localhost:4000/user/info", {
+      const response = await axios.get(`${API_BASE_URL}/user/info`, {
         headers: {
           Authorization: token,
         },

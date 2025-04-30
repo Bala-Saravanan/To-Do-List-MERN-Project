@@ -5,21 +5,20 @@ import axios from "axios";
 import { FaRegEdit } from "react-icons/fa";
 import { useState } from "react";
 import Edit from "./Edit";
+import { API_BASE_URL } from "../constants/constant.js";
 
 const ToDo = () => {
   const [editPannelOpen, setEditPannelOpen] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState(null);
 
-  const { data: todos, refetch } = GetAllToDo(
-    "http://localhost:4000/get/todos"
-  );
+  const { data: todos, refetch } = GetAllToDo(`${API_BASE_URL}/get/todos`);
   const totalData = todos.length;
   const completedData = todos.filter(({ status }) => status).length;
   // console.log(completedData);
 
   const deleteHandler = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/delete/todo/${id}`);
+      await axios.delete(`${API_BASE_URL}/delete/todo/${id}`);
       alert("Task deleted successfully!");
       refetch();
     } catch (error) {
@@ -30,7 +29,7 @@ const ToDo = () => {
 
   const editHandler = async (id, complete) => {
     try {
-      await axios.patch(`http://localhost:4000/update/status/${id}`, {
+      await axios.patch(`${API_BASE_URL}/update/status/${id}`, {
         status: !complete,
       });
       alert("Status updated!");
@@ -48,7 +47,7 @@ const ToDo = () => {
   const updateTodoHandler = async (updatedData) => {
     try {
       await axios.patch(
-        `http://localhost:4000/update/todo/${selectedTodo._id}`,
+        `${API_BASE_URL}/update/todo/${selectedTodo._id}`,
         updatedData
       );
       alert("To-Do updated!");

@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import postImg from "./../assets/postTodo.webp";
 import axios from "axios";
 import { useState } from "react";
+import { API_BASE_URL } from "../constants/constant";
 
 const PostToDo = () => {
   const [todo, setTodo] = useState({
@@ -24,15 +25,11 @@ const PostToDo = () => {
       const token = localStorage.getItem("token");
 
       event.preventDefault();
-      const response = await axios.post(
-        "http://localhost:4000/post/todo",
-        todo,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const response = await axios.post(`${API_BASE_URL}/post/todo`, todo, {
+        headers: {
+          Authorization: token,
+        },
+      });
       // console.log(response);
       alert("To Do created successfully!");
       setTodo({ title: "", description: "", status: false });

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../../constants/constant";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Login = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:4000/user/login",
+        `${API_BASE_URL}/user/login`,
         loggedInUser
       );
       // console.log(response);
