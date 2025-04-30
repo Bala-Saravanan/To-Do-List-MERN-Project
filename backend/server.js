@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, "../frontend/dist")));
 app.use(express.json());
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://to-do-list-mern-project.onrender.com/",
+  "https://to-do-list-mern-project.onrender.com",
   "http://localhost:4000",
 ];
 
