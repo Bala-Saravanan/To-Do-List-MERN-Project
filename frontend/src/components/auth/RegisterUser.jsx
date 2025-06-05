@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../constants/constant";
+import { toast } from "react-toastify";
 
 const RegisterUser = () => {
   const [newUser, setNewUser] = useState({
@@ -27,17 +28,19 @@ const RegisterUser = () => {
         !newUser.password ||
         !newUser.confirmPassword
       ) {
-        alert("All fields are required!");
+        toast.error("All fields are required!");
         return;
       }
 
       if (newUser.password !== newUser.confirmPassword) {
-        alert("Passwords do not match!");
+        // alert("Passwords do not match!");
+        toast.error("Password do not match!");
         return;
       }
       await axios.post(`${API_BASE_URL}/user/signup`, newUser);
       navigate("../../user/login");
-      alert("User created successfully!");
+      // alert("User created successfully!");
+      toast.success("User created successfully!");
       setNewUser({
         userName: "",
         email: "",
@@ -45,7 +48,8 @@ const RegisterUser = () => {
         confirmPassword: "",
       });
     } catch (error) {
-      alert("Error registering user!");
+      // alert("Error registering user!");
+      toast.error("Error registering user!");
       console.log(error);
     }
   };

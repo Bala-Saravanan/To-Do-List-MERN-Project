@@ -6,6 +6,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { useState } from "react";
 import Edit from "./Edit";
 import { API_BASE_URL } from "../constants/constant.js";
+import { toast } from "react-toastify";
 
 const ToDo = () => {
   const [editPannelOpen, setEditPannelOpen] = useState(false);
@@ -19,11 +20,13 @@ const ToDo = () => {
   const deleteHandler = async (id) => {
     try {
       await axios.delete(`${API_BASE_URL}/delete/todo/${id}`);
-      alert("Task deleted successfully!");
+      // alert("Task deleted successfully!");
+      toast.success("Task deleted successfully!");
       refetch();
     } catch (error) {
       console.error(error.message);
-      alert("Error deleting task!");
+      // alert("Error deleting task!");
+      toast.error("Error deleting task!");
     }
   };
 
@@ -32,7 +35,8 @@ const ToDo = () => {
       await axios.patch(`${API_BASE_URL}/update/status/${id}`, {
         status: !complete,
       });
-      alert("Status updated!");
+      // alert("Status updated!");
+      toast.success("Status updatd");
       refetch();
     } catch (error) {
       console.log(error);
@@ -50,12 +54,14 @@ const ToDo = () => {
         `${API_BASE_URL}/update/todo/${selectedTodo._id}`,
         updatedData
       );
-      alert("To-Do updated!");
+      // alert("To-Do updated!");
+      toast.success("To-Do updated!");
       refetch();
       setEditPannelOpen(false); // Close edit panel after update
     } catch (error) {
       console.error(error);
-      alert("Error updating To-Do!");
+      // alert("Error updating To-Do!");
+      toast.error("Error updating To-Do!");
     }
   };
 

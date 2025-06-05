@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_BASE_URL } from "../../constants/constant";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +15,8 @@ const Login = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
     if (!loggedInUser.email || !loggedInUser.password) {
-      alert("All fields are required!");
+      // alert("All fields are required!");
+      toast.error("All fields are required!");
       return;
     }
     try {
@@ -28,7 +30,8 @@ const Login = () => {
       axios.defaults.headers.common["Authorization"] = token; // Set the token in the Axios default headers
 
       navigate("/");
-      alert(`Welcome Back!`);
+      // alert(`Welcome Back!`);
+      toast.success("Welcome Back!");
       setLoggedInUser({
         email: "",
         password: "",

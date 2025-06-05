@@ -4,6 +4,7 @@ import postImg from "./../assets/postTodo.webp";
 import axios from "axios";
 import { useState } from "react";
 import { API_BASE_URL } from "../constants/constant";
+import { toast } from "react-toastify";
 
 const PostToDo = () => {
   const [todo, setTodo] = useState({
@@ -31,11 +32,13 @@ const PostToDo = () => {
         },
       });
       // console.log(response);
-      alert("To Do created successfully!");
+      // alert("To Do created successfully!");
+      toast.success("To Do created successfully!");
       setTodo({ title: "", description: "", status: false });
     } catch (error) {
       console.log(error);
-      alert(error.response.data.message);
+      // alert(error.response.data.message);
+      toast.error(error.response?.data?.message);
     }
   };
 
