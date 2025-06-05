@@ -3,6 +3,9 @@ import NavBar from "./NavBar.jsx";
 import Footer from "./Footer.jsx";
 import axios from "axios";
 import { FaRegEdit } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa6";
+import { FaXmark } from "react-icons/fa6";
+import { MdDelete } from "react-icons/md";
 import { useState } from "react";
 import Edit from "./Edit";
 import { API_BASE_URL } from "../constants/constant.js";
@@ -70,8 +73,8 @@ const ToDo = () => {
       <NavBar />
       <div className="flex-grow">
         <div className="text-gray-500 ms-10 text-lg">
-          <p>Total To Do: {totalData}</p>
-          <p>Completed To Do: {completedData}</p>
+          <p>Total: {totalData}</p>
+          <p>Completed: {completedData}</p>
         </div>
         {todos && todos.length > 0 ? (
           <ul>
@@ -110,15 +113,17 @@ const ToDo = () => {
                     <div className="flex space-x-5">
                       <button
                         onClick={() => editHandler(_id, status)}
-                        className="px-7 py-2 rounded-lg bg-primary hover:bg-hover text-white font-bold my-4 transition-all duration-500 cursor-pointer"
+                        className={`px-7 py-2 rounded-lg text-white font-bold my-4 transition-all duration-500 cursor-pointer ${
+                          !status ? "bg-green-500" : "bg-red-500"
+                        }`}
                       >
-                        {status ? "Incomplete" : "Complete"}
+                        {status ? <FaXmark /> : <FaCheck />}
                       </button>
                       <button
                         onClick={() => deleteHandler(_id)}
-                        className="px-7 py-2 rounded-lg bg-primary hover:bg-hover text-white font-bold my-4 transition-all duration-500 cursor-pointer"
+                        className="px-7 py-2 rounded-lg bg-red-500 text-white font-bold my-4 transition-all duration-500 cursor-pointer"
                       >
-                        Delete
+                        <MdDelete />
                       </button>
                     </div>
                   </div>

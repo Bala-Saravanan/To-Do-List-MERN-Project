@@ -54,7 +54,7 @@ const Login = () => {
         <div className="border rounded-xl shadow-2xl">
           <form
             onSubmit={submitHandler}
-            className="h-[400px] w-[500px] flex flex-col items-center "
+            className="h-[400px] w-[300px] sm:w-[500px] flex flex-col items-center "
           >
             <h1 className="font-bold text-3xl my-7">
               Log <span className="text-primary">In</span>
@@ -64,7 +64,7 @@ const Login = () => {
                 Email:{" "}
               </label>
               <input
-                className="w-[400px] h-[35px] px-2 border rounded focus:outline-primary"
+                className="w-fit sm:w-[400px] h-[35px] px-2 border rounded focus:outline-primary"
                 type="email"
                 name="email"
                 id="email"
@@ -77,7 +77,7 @@ const Login = () => {
                 Password
               </label>
               <input
-                className="w-[400px] h-[35px] px-2 border rounded focus:outline-primary"
+                className="w-fit sm:w-[400px] h-[35px] px-2 border rounded focus:outline-primary"
                 type="password"
                 name="password"
                 id="password"
